@@ -1,3 +1,27 @@
 p {
   font-family: Lato;
 }
+.profile_pic {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+}
+.container {
+  display: flex;
+}
+.search {
+  flex-grow: 1;
+}
+.dashboard {
+  border-left: 1px solid gray;
+}
+
+.dashboard .recent {
+  display: flex;
+  cursor: pointer;
+  padding-left: 20px;
+}
+.dashboard .recent .searchText {
+}
+.dashboard .recent .resultCount {
+}
