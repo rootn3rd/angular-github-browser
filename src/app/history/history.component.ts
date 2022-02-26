@@ -28,7 +28,6 @@ export class HistoryComponent {
   constructor(private store: Store<AppState>, private router: Router) {}
 
   search(text: string) {
-    //  this.searchText = text;
     this.store.dispatch(search({ searchText: text }));
     this.router.navigate(['search']);
   }
