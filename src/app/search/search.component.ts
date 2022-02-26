@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   AppState,
   GithubUser,
@@ -18,6 +19,7 @@ import {
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
+  isComponentAlive$ = new Subject<void>();
   searchText: string = '';
 
   isSearching$: Observable<boolean> = this.store.pipe(select(isSearching));
@@ -31,6 +33,17 @@ export class SearchComponent {
     private store: Store<AppState>,
     @Inject(DOCUMENT) private document: Document
   ) {}
+
+  ngOnInit() {
+    this.searchText$
+      .pipe(takeUntil(this.isComponentAlive$))
+      .subscribe((t) => (this.searchText = t));
+  }
+
+  ngOnDestroy() {
+    this.isComponentAlive$.next();
+    this.isComponentAlive$.complete();
+  }
 
   submitSearch() {
     console.log(this.searchText);

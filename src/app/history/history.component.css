@@ -1,0 +1,10 @@
+.dashboard {
+}
+.recent .searchText {
+  flex-grow: 1;
+}
+
+.recent .removeRecent,
+.recent .searchRecent {
+  transform: scale(0.75);
+}

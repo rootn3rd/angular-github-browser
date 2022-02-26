@@ -16,12 +16,14 @@
     </button>
   </div>
 
-  <div *ngIf="isSearching$ | async">
+  <div *ngIf="isSearching$ | async; else searchResults">
     <span>Loading...</span>
   </div>
 
   <ng-template #searchResults>
-    <p>Showing results for - <span [innerHTML]="searchText$ | async"></span></p>
+    <p *ngIf="searchText.length !== 0">
+      Showing results for - <span [innerHTML]="searchText$ | async"></span>
+    </p>
 
     <div class="search-result-container">
       <div

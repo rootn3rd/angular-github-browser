@@ -20,7 +20,7 @@ import { HistoryComponent } from './history/history.component';
     RouterModule.forRoot([
       { path: 'search', component: SearchComponent },
       { path: 'history', component: HistoryComponent },
-      { path: '**', redirectTo: '/search', pathMatch: 'full' },
+      { path: '**', redirectTo: '/history', pathMatch: 'full' },
     ]),
     StoreModule.forRoot({
       search: appReducer,

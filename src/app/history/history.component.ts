@@ -15,6 +15,7 @@ import {
   clearRecents,
   removeRecent,
 } from '../../app.store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'history',
@@ -24,14 +25,12 @@ import {
 export class HistoryComponent {
   recents$: Observable<RecentEntry[]> = this.store.pipe(select(recents));
 
-  constructor(
-    private store: Store<AppState>,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   search(text: string) {
     //  this.searchText = text;
     this.store.dispatch(search({ searchText: text }));
+    this.router.navigate(['search']);
   }
 
   clearAllRecents() {
