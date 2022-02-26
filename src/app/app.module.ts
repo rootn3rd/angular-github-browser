@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
-import { StoreModule } from '@ngrx/store/src';
-import { EffectsModule } from '@ngrx/effects/src';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from '../app.store';
 
 @NgModule({
