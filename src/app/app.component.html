@@ -1,0 +1,15 @@
+<hello name="{{ name }}"></hello>
+<nav>
+<a routerLink="/todos" routerLinkActive="active">ToDo</a> 
+<a routerLink="/profile" routerLinkActive="active" style="margin-left: 20px;">Profile</a>
+<a routerLink="/counter" routerLinkActive="active" style="margin-left: 20px;">Counter</a>
+</nav>
+
+<!-- <counter [counter]="counter$ | async" (add)="handleAdd()" (subtract)="handleSubtract()"></counter> -->
+<hr>
+<!-- <profile [owner]="owner$ | async" [status]="status$ | async" [counter]="counter$ | async" (performAction)="performAction()"></profile>
+
+<hr>
+<todo [todo]="todo$ | async" [status]="busy$ | async" (deleteTodo)="handleDeleteTodo($event)" (addTodo)="handleAddTodo()" ></todo> -->
+
+<router-outlet></router-outlet>
