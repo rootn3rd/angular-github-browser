@@ -1,6 +1,22 @@
-<h2>Dashboard</h2>
+<div class="title">Github Dashboard</div>
+
+<nav class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/search" routerLinkActive="active"
+      >Search</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/history" routerLinkActive="active"
+      >History</a
+    >
+  </li>
+</nav>
+
+<router-outlet></router-outlet>
+
 <div class="container">
-  <div class="search">
+  <!-- <div class="search">
     <input type="text" [(ngModel)]="searchText" />
     <button (click)="submitSearch()" [disabled]="searchText.length === 0">
       Search
@@ -22,9 +38,9 @@
     </div>
 
     <p [innerHTML]="error$ | async"></p>
-  </div>
+  </div> -->
 
-  <div class="dashboard">
+  <!-- <div class="dashboard">
     <div class="header">
       <p>Recents</p>
       <button
@@ -42,5 +58,5 @@
         <div class="removeRecent" (click)="removeRecent(recent)">x</div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

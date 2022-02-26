@@ -82,7 +82,7 @@ export const initialState = {
   isDeletiongInProgress: false,
   searchText: '',
   searchResults: [],
-  isSearching: false,
+  isSearching: true,
   error: null,
   recents: [],
 };

@@ -1,0 +1,40 @@
+hi
+<div class="search-container p-4">
+  <div class="container d-flex flex-col">
+    <input
+      type="text"
+      class="form-control w-50"
+      placeholder="Search by username ..."
+      aria-label="Recipient's username"
+      [(ngModel)]="searchText"
+    />
+    <button
+      class="btn btn-secondary"
+      (click)="submitSearch()"
+      [disabled]="searchText.length === 0"
+    >
+      Search
+    </button>
+  </div>
+
+  <div *ngIf="isSearching$ | async; else searchResults">
+    <span>Loading...</span>
+  </div>
+
+  <ng-template #searchResults>
+    <p>Showing results for - <span [innerHTML]="searchText$ | async"></span></p>
+
+    <div *ngFor="let result of searchResults$ | async">
+      <div class="result">
+        <p class="login" [innerHTML]="result.login"></p>
+        <img
+          class="profile_pic"
+          [src]="result.avatar_url"
+          (click)="navigateToProfile(result.html_url)"
+        />
+      </div>
+    </div>
+
+    <p [innerHTML]="error$ | async"></p>
+  </ng-template>
+</div>
