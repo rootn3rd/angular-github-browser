@@ -1,0 +1,28 @@
+.search-container {
+}
+.search-result-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding: 10px;
+}
+.search-result {
+  width: auto;
+}
+
+@media only screen and (min-width: 400px) {
+  .search-result-container {
+    grid-template-columns: auto auto;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .search-result-container {
+    grid-template-columns: auto auto auto;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .search-result-container {
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+}
