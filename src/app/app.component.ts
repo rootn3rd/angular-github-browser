@@ -41,7 +41,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(initializeApp());
+    // this.store.dispatch(initializeApp());
   }
   submitSearch() {
     console.log(this.searchText);
