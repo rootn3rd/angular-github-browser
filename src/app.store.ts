@@ -62,6 +62,11 @@ export const clearRecentsCompleted = createAction(
   '[App] Clear recents completed'
 );
 
+export const removeRecent = createAction(
+  '[App] Remove recent',
+  props<{ recentEntry: RecentEntry }>()
+);
+
 export const search = createAction(
   '[App] Search',
   props<{ searchText: string }>()
@@ -112,6 +117,13 @@ export const appReducer = createReducer(
       recents: [],
     };
   }),
+  on(removeRecent, (state, { recentEntry }) => {
+    return {
+      ...state,
+      recents: state.recents.filter((r) => r != recentEntry),
+    };
+  }),
+
   on(search, (state, { searchText }) => {
     return {
       ...state,

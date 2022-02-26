@@ -14,6 +14,8 @@ import {
   RecentEntry,
   recents,
   initializeApp,
+  clearRecents,
+  removeRecent
 } from '../app.store';
 
 @Component({
@@ -41,7 +43,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    // this.store.dispatch(initializeApp());
+    this.store.dispatch(initializeApp());
   }
   submitSearch() {
     console.log(this.searchText);
@@ -55,5 +57,13 @@ export class AppComponent {
   search(text: string) {
     this.searchText = text;
     this.store.dispatch(search({ searchText: text }));
+  }
+
+  clearAllRecents() {
+    this.store.dispatch(clearRecents());
+  }
+
+  removeRecent(recent:RecentEntry){
+    this.store.dispatch(removeRecent({ recentEntry: recent}));
   }
 }

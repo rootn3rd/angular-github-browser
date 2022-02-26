@@ -25,11 +25,21 @@
   </div>
 
   <div class="dashboard">
-    <p>Recents</p>
+    <div class="header">
+      <p>Recents</p>
+      <button
+        (click)="clearAllRecents()"
+        [disabled]="(recents$ | async).length === 0"
+      >
+        Clear All
+      </button>
+    </div>
+
     <div *ngFor="let recent of recents$ | async">
       <div class="recent" (click)="search(recent.text)">
         <p class="searchText" [innerHTML]="recent.text"></p>
         <p class="resultCount" [innerHTML]="recent.count"></p>
+        <div class="removeRecent" (click)="removeRecent(recent)">x</div>
       </div>
     </div>
   </div>

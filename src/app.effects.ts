@@ -64,22 +64,22 @@ export class AppEffects {
   saveRecents$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType('[App] Search Completed'),
+        ofType(...['[App] Search Completed', '[App] Remove recent']),
         switchMap((payload) => this.store$.pipe(select(recents), take(1))),
         map((recents) => this.storageService.saveRecents(recents))
       ),
     { dispatch: false }
   );
 
-  // clearRecents$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType('[App] Clear recents'),
-  //     switchMap((payload: any) => {
-  //       this.storageService.saveRecents([]);
-  //       return of(clearRecentsCompleted());
-  //     })
-  //   )
-  // );
+  clearRecents$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType('[App] Clear recents'),
+      switchMap((payload: any) => {
+        this.storageService.saveRecents([]);
+        return of(clearRecentsCompleted());
+      })
+    )
+  );
 }
 
 @Injectable()
