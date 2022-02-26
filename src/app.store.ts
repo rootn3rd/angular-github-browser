@@ -1,4 +1,18 @@
-import { createAction, createReducer, props, on } from '@ngrx/store';
+import {
+  createAction,
+  createReducer,
+  props,
+  on,
+  createFeatureSelector,
+  createSelector,
+} from '@ngrx/store';
+
+interface AppState {
+  searchText: string;
+  searchResults: GithubUserResults[];
+  isSearching: boolean;
+  error: string;
+}
 
 interface GithubUserResults {
   url: string;
@@ -48,4 +62,22 @@ export const appReducer = createReducer(
       searchResults,
     };
   })
+);
+
+export const searchState = createFeatureSelector<AppState>('search');
+export const isSearching = createSelector(
+  searchState,
+  (state: AppState) => state.isSearching
+);
+export const searchText = createSelector(
+  searchState,
+  (state: AppState) => state.searchText
+);
+export const searchResults = createSelector(
+  searchState,
+  (state: AppState) => state.searchResults
+);
+export const error = createSelector(
+  searchState,
+  (state: AppState) => state.error
 );
