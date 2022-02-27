@@ -72,6 +72,8 @@ export const search = createAction(
   props<{ searchText: string }>()
 );
 
+export const clearSearch = createAction('[App] Clear Search');
+
 export const searchCompleted = createAction(
   '[App] Search Completed',
   props<{ searchResults: GithubSearchUserResult; error: any }>()
@@ -869,6 +871,16 @@ export const appReducer = createReducer(
         ...state.recents.filter((r) => r.text !== state.searchText),
       ],
     };
+  }),
+
+  on(clearSearch, (state) => {
+    return { 
+      ...state,
+      searchText: '',
+      searchResults:[],
+      isSearching: false,
+      error: null,
+     };
   })
 );
 

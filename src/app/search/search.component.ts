@@ -11,6 +11,7 @@ import {
   searchResults,
   error,
   search,
+  clearSearch,
 } from '../../app.store';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -44,13 +45,17 @@ export class SearchComponent {
 
     const routeParam$ = this.route.paramMap.pipe(
       map((params: ParamMap) => params.get('username')),
-      filter((username) => !!username),
       takeUntil(this.isComponentAlive$)
     );
 
-    routeParam$.subscribe((text) =>
-      this.store.dispatch(search({ searchText: text.trim() }))
-    );
+    routeParam$.subscribe((txt) => {
+      this.searchText = txt;
+      if (txt && txt.length !== 0) {
+        this.store.dispatch(search({ searchText: txt.trim() }));
+      } else {
+        this.store.dispatch(clearSearch());
+      }
+    });
   }
 
   ngOnDestroy() {
