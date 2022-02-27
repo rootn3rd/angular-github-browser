@@ -15,7 +15,7 @@ import {
   recents,
   initializeApp,
   clearRecents,
-  removeRecent
+  removeRecent,
 } from '../app.store';
 
 @Component({
@@ -24,46 +24,9 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
-
-  searchText: string = '';
-
-  isSearching$: Observable<boolean> = this.store.pipe(select(isSearching));
-  searchText$: Observable<string> = this.store.pipe(select(searchText));
-  searchResults$: Observable<GithubUser[]> = this.store.pipe(
-    select(searchResults)
-  );
-  error$: Observable<string> = this.store.pipe(select(error));
-
-  recents$: Observable<RecentEntry[]> = this.store.pipe(select(recents));
-
-  constructor(
-    private store: Store<AppState>,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.store.dispatch(initializeApp());
-  }
-  submitSearch() {
-    console.log(this.searchText);
-    this.store.dispatch(search({ searchText: this.searchText.trim() }));
-  }
-
-  navigateToProfile(url: string) {
-    this.document.defaultView.open(url, '_blank');
-  }
-
-  search(text: string) {
-    this.searchText = text;
-    this.store.dispatch(search({ searchText: text }));
-  }
-
-  clearAllRecents() {
-    this.store.dispatch(clearRecents());
-  }
-
-  removeRecent(recent:RecentEntry){
-    this.store.dispatch(removeRecent({ recentEntry: recent}));
   }
 }

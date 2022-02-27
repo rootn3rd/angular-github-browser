@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, map, filter } from 'rxjs/operators';
 import {
   AppState,
   GithubUser,
@@ -12,6 +12,7 @@ import {
   error,
   search,
 } from '../../app.store';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'search',
@@ -31,13 +32,25 @@ export class SearchComponent {
 
   constructor(
     private store: Store<AppState>,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.searchText$
-      .pipe(takeUntil(this.isComponentAlive$))
-      .subscribe((t) => (this.searchText = t));
+    // this.searchText$
+    //   .pipe(takeUntil(this.isComponentAlive$))
+    //   .subscribe((t) => (this.searchText = t));
+
+    const routeParam$ = this.route.paramMap.pipe(
+      map((params: ParamMap) => params.get('username')),
+      filter((username) => !!username),
+      takeUntil(this.isComponentAlive$)
+    );
+
+    routeParam$.subscribe((text) =>
+      this.store.dispatch(search({ searchText: text.trim() }))
+    );
   }
 
   ngOnDestroy() {
@@ -47,7 +60,8 @@ export class SearchComponent {
 
   submitSearch() {
     console.log(this.searchText);
-    this.store.dispatch(search({ searchText: this.searchText.trim() }));
+    //this.store.dispatch(search({ searchText: this.searchText.trim() }));
+    this.router.navigate(['search', this.searchText]);
   }
 
   navigateToProfile(url: string) {

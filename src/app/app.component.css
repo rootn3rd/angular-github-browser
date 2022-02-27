@@ -7,38 +7,3 @@
 .menu {
   padding-top: 1rem;
 }
-p {
-  font-family: Lato;
-}
-.profile_pic {
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-}
-.container {
-  display: flex;
-}
-.search {
-  flex-grow: 1;
-}
-.dashboard {
-  border-left: 1px solid gray;
-}
-
-.dashboard .recent {
-  display: flex;
-  cursor: pointer;
-  padding-left: 20px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.dashboard .recent .searchText {
-  font-weight: bold;
-}
-.dashboard .recent .resultCount {
-}
-.dashboard .recent .removeRecent {
-  text-decoration: underline;
-  cursor: pointer;
-}

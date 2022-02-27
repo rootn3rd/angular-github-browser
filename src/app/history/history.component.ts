@@ -28,8 +28,8 @@ export class HistoryComponent {
   constructor(private store: Store<AppState>, private router: Router) {}
 
   search(text: string) {
-    this.store.dispatch(search({ searchText: text }));
-    this.router.navigate(['search']);
+    //this.store.dispatch(search({ searchText: text }));
+    this.router.navigate(['search',  text]);
   }
 
   clearAllRecents() {

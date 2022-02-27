@@ -18,6 +18,7 @@ import { HistoryComponent } from './history/history.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: 'search/:username', component: SearchComponent },
       { path: 'search', component: SearchComponent },
       { path: 'history', component: HistoryComponent },
       { path: '**', redirectTo: '/history', pathMatch: 'full' },
