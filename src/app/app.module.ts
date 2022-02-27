@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { appReducer } from '../app.store';
-import { AppEffects, GithubService, StorageService } from '../app.effects';
+
+import { appReducer } from './store/app.reducer';
+import { AppEffects } from './store/app.effects';
+import { GithubService, StorageService } from './services';
+
 import { SearchComponent } from './search/search.component';
 import { HistoryComponent } from './history/history.component';
 
@@ -30,12 +32,7 @@ import { HistoryComponent } from './history/history.component';
   ],
 
   providers: [GithubService, StorageService],
-  declarations: [
-    AppComponent,
-    HelloComponent,
-    SearchComponent,
-    HistoryComponent,
-  ],
+  declarations: [AppComponent, SearchComponent, HistoryComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

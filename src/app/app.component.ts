@@ -1,22 +1,7 @@
-import { Component, VERSION, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import {
-  AppState,
-  GithubUser,
-  isSearching,
-  searchText,
-  searchResults,
-  error,
-  search,
-  searchCompleted,
-  RecentEntry,
-  recents,
-  initializeApp,
-  clearRecents,
-  removeRecent,
-} from '../app.store';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './store/app.models';
+import { initializeApp } from './store/app.actions';
 
 @Component({
   selector: 'my-app',

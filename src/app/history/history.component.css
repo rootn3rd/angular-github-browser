@@ -1,4 +1,6 @@
 .dashboard {
+  max-width: 650px;
+  margin: 0 auto;
 }
 .recent .searchText {
   flex-grow: 1;

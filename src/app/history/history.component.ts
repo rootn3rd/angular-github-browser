@@ -2,19 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {
-  AppState,
-  RecentEntry,
-  GithubUser,
-  isSearching,
-  searchText,
-  searchResults,
-  error,
-  search,
-  recents,
-  clearRecents,
-  removeRecent,
-} from '../../app.store';
+import { AppState, RecentEntry } from '../store/app.models';
+import { recents } from '../store/app.selectors';
+import { clearRecents, removeRecent } from '../store/app.actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,7 +19,7 @@ export class HistoryComponent {
 
   search(text: string) {
     //this.store.dispatch(search({ searchText: text }));
-    this.router.navigate(['search',  text]);
+    this.router.navigate(['search', text]);
   }
 
   clearAllRecents() {

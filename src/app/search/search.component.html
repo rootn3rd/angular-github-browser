@@ -1,4 +1,4 @@
-<div class="search-container p-4">
+<div class="search-container p-4 mt-4">
   <div class="container d-flex flex-col">
     <input
       type="text"
@@ -8,7 +8,7 @@
       [(ngModel)]="searchText"
     />
     <button
-      class="btn btn-secondary"
+      class="btn btn-secondary btnSearch"
       (click)="submitSearch()"
       [disabled]="searchText.length === 0"
     >

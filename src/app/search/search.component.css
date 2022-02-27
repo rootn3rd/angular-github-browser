@@ -1,4 +1,9 @@
-.search-container {
+.search-container{
+  max-width: 650px;
+  margin: 0 auto;
+}
+.search-container .btnSearch {
+  margin-left: 1rem;
 }
 .search-result-container {
   display: grid;

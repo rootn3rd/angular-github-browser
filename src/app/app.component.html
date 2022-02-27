@@ -1,16 +1,28 @@
-<div class="title">Github Dashboard</div>
+<div class="app-container">
+  <div class="title">Github Dashboard</div>
 
-<nav class="nav nav-pills menu">
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/search" routerLinkActive="active"
-      >Search</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/history" routerLinkActive="active"
-      >History</a
-    >
-  </li>
-</nav>
+  <nav class="nav nav-pills menu">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/search" routerLinkActive="active"
+        >Search</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/history" routerLinkActive="active"
+        >History</a
+      >
+    </li>
+  </nav>
 
-<router-outlet></router-outlet>
+  <div class="outlet">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer">
+    <div class="footer-text text-center font-weight-light">
+      All rights reserved.&copy; Made with
+      <div id="heart"></div>
+      by
+      <a href="https://github.com/rootn3rd" target="_blank">Pankaj Chaurasia</a>
+    </div>
+  </div>
+</div>

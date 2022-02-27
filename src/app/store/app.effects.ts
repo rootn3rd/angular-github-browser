@@ -1,27 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import {
-  catchError,
-  switchMap,
-  map,
-  delay,
-  filter,
-  take,
-  startWith,
-} from 'rxjs/operators';
+import { catchError, switchMap, map, filter, take } from 'rxjs/operators';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
+
+import { GithubService, StorageService } from '../services';
 import {
-  AppState,
-  GithubSearchUserResult,
   initializeAppComplete,
-  RecentEntry,
-  search,
   searchCompleted,
-  recents,
   clearRecentsCompleted,
-} from './app.store';
+} from './app.actions';
+
+import { AppState } from './app.models';
+import { recents } from './app.selectors';
 
 @Injectable()
 export class AppEffects {
@@ -80,30 +71,4 @@ export class AppEffects {
       })
     )
   );
-}
-
-@Injectable()
-export class GithubService {
-  constructor(private http: HttpClient) {}
-
-  getUsers(text: string): Observable<GithubSearchUserResult> {
-    return this.http.get<GithubSearchUserResult>(
-      `https://api.github.com/search/users?q=${text}+in:user`
-    );
-  }
-}
-
-@Injectable()
-export class StorageService {
-  key: string = 'github_recents';
-
-  getRecents(): Observable<RecentEntry[]> {
-    let recents = localStorage.getItem(this.key);
-    return of(JSON.parse(recents));
-  }
-
-  saveRecents(recents: RecentEntry[]) {
-    console.log('Saving recents');
-    localStorage.setItem(this.key, JSON.stringify(recents));
-  }
 }
